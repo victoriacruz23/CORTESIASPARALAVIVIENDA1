@@ -1,13 +1,14 @@
 <?php
 session_start();
 require_once("conexion.php");
+$conexion = new Conexion;
 // print_r($_POST);
 // Capturar los datos del formulario
 $nickname = $_POST['nameusuario'];
 $password = $_POST['password'];
 // Verificar el usuario en la base de datos
 $sql = "SELECT * FROM usuario_01 WHERE Nick_name = '$nickname' AND Contrasena = '$password'";
-$result = $conexion->query($sql);
+$result = $conexion->conectar()->query($sql);
 
 if ($result->num_rows == 1) {
     // Usuario válido
@@ -15,13 +16,13 @@ if ($result->num_rows == 1) {
     $perfil = $row['Perfil'];
 
     // Redireccionar según el perfil del usuario
-    if ($perfil == 'asesor') {
+    if ($perfil == 1) {
         header("Location: ../asesor/index.php");
-    } elseif ($perfil == 'gerente') {
+    } elseif ($perfil == 2) {
         header("Location: ../gerente/index.php");
-    } elseif ($perfil == 'direccion') {
+    } elseif ($perfil == 3) {
         header("Location: ../direccion/index.php");
-    } elseif ($perfil == 'areati') {
+    } elseif ($perfil == 4) {
         header("Location: ../area_de_ti/index.php");
     } else {
         echo "Perfil desconocido";
@@ -31,5 +32,4 @@ if ($result->num_rows == 1) {
     echo "Credenciales de inicio de sesión incorrectas";
 }
 
-$conexion->close();
 ?>

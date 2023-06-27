@@ -66,13 +66,12 @@
                         <div class="mb-3">
                             <label for="perfil" class="form-label">Perfil</label>
                             <select class="form-control border border-success" name="perfil" id="perfil" aria-describedby="usuarioHelp" placeholder="Selecciona tu perfil" required>   
-                            <option value="asesor">Asesor</option>
-                            <option value="gerente">Gerente General</option>
-                            <option value="direccion">Dirección General</option>
-                            <option value="areati">Área de TI</option>
+                            <option value="1">Asesor</option>
+                            <option value="2">Gerente General</option>
+                            <option value="3">Dirección General</option>
+                            <option value="4">Área de TI</option>
                         </select><br>  
                         </div>
-    
                         
                         <center>
                             <button type="submit" class="btn btn-outline-success">Registrarte</button>
