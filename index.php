@@ -21,7 +21,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary"  data-bs-theme="white">
   <div class="container-fluid">
-  <img class="mx-3" width="350px" height="100px" src="https://www.planvivienda.com.mx/img/logo01.png" alt>   
+  <img class="mx-4" width="350px" height="100px" src="https://www.planvivienda.com.mx/img/logo01.png" alt>   
          <!-- crear cuenta -->
          <a href="RegistroUser.php" class="mx-4 btn btn-outline-success" onclick="miFuncion()">Crear cuenta nueva</a>
             </div>

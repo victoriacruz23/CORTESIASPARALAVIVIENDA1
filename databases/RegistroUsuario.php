@@ -40,7 +40,8 @@ if($password !== $password1){
 // Insertar los datos en la base de datos
 $conexion = new Conexion;
 // $sql = $conexion->conectar()->query("SELECT * FROM rolperfil_01");
-$sql = $conexion->conectar()->query("INSERT INTO usuario_01 (Nombre, Apellidos, Fecha_de_nacimiento, Nick_name, Contrasena, Perfil) VALUES ('$nombre', '$ape', '$fecha', '$nickname', '$password', '$perfil')") ;
+$sql = $conexion->conectar()->query("INSERT INTO usuario_01 (Nombre, Apellidos, Fecha_de_nacimiento, Nick_name, Contrasena, Perfil) 
+                                        VALUES ('$nombre', '$ape', '$fecha', '$nickname', '$password', '$perfil')") ;
 // echo $sql->num_rows;
 if ($sql) {
     echo "

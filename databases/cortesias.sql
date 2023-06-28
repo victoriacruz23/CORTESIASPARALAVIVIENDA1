@@ -35,3 +35,32 @@ CREATE TABLE cortesias_01(
     Tipo_cortesia varchar(50),
     Descripcion TEXT 
 );
+CREATE TABLE colaborador(
+    Id_colaborador INT PRIMARY KEY AUTO_INCREMENT, 
+    Nombre_colaborador varchar(50),
+    Apellidos varchar(50),
+
+
+);
+CREATE TABLE cancelaciones(
+    id_cancelacion_ahorros INT PRIMARY KEY AUTO_INCREMENT,
+    estatus BIT NOT NULL, 
+    Nombre_afiliado VARCHAR(250) NOT NULL, 
+    referencia VARCHAR(100) NOT NULL,
+    email CHARACTER(150) NOT NULL, 
+    telefono VARCHAR(12) NOT NULL, 
+    total_ahorro DECIMAL(18,6) NOT NULL, 
+    tipo_cancelacion VARCHAR(150) NOT NULL,
+    fecha DATE NOT NULL
+);
+CREATE TABLE Afiliado(
+    Id_afiliado INT PRIMARY KEY AUTO_INCREMENT,
+
+);
+CREATE TABLE liquidacion(
+    Id_liquidacion INT PRIMARY KEY AUTO_INCREMENT,
+    Afiliado_li INT,
+    CONSTRAINT Afiliado_FK FOREIGN KEY 
+
+
+);

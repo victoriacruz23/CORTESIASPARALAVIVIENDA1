@@ -11,7 +11,9 @@ $sql = "SELECT * FROM usuario_01 WHERE Nick_name = '$nickname' AND Contrasena = 
 $result = $conexion->conectar()->query($sql);
 
 if ($result->num_rows == 1) {
+    $datos = $conexion->conectar()->query($sql);
     // Usuario válido
+    $_SESSION['datosuser'] = $datos->fetch_assoc();
     $row = $result->fetch_assoc();
     $perfil = $row['Perfil'];
 
