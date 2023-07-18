@@ -10,6 +10,7 @@
       usuario: false,
       apellidos: false,
       fecha: false,
+      perfil: false,
       nameusuario: false,
       password: false,
       password1: false,
@@ -37,6 +38,25 @@
               break;
       }
   }
+  const selectPerfil = document.getElementById('perfil');
+  selectPerfil.addEventListener('change', (e) => {
+      validarSelect(e.target, 'perfil');
+  });
+  const validarSelect = (input, campo) => {
+      const valor = input.value;
+      //   console.log(valor);
+      if (valor !== '0') {
+          document.getElementById(campo).classList.remove('is-invalid');
+          document.getElementById(campo).classList.add('is-valid');
+          document.getElementById(`mensaje_${campo}`).classList.add('d-none');
+          campos[campo] = true;
+      } else {
+          document.getElementById(campo).classList.remove('is-valid');
+          document.getElementById(campo).classList.add('is-invalid');
+          document.getElementById(`mensaje_${campo}`).classList.remove('d-none');
+          campos[campo] = false;
+      }
+  }
   inputs.forEach((input) => {
       input.addEventListener('keyup', validarForm);
       input.addEventListener('blur', validarForm);
@@ -62,8 +82,8 @@
   //   registro de datos
   function registrar(event) {
       event.preventDefault();
-      console.log()
-      if (campos.usuario && campos.apellidos && campos.fecha && campos.nameusuario && campos.password && campos.password1) {
+      //   console.log()
+      if (campos.usuario && campos.perfil && campos.apellidos && campos.fecha && campos.nameusuario && campos.password && campos.password1) {
           const password = document.getElementById('password').value,
               password1 = document.getElementById('password1').value;
           if (password != password1) {
@@ -87,9 +107,7 @@
   }
 
   function regsitrouser() {
-      var domain = window.location.protocol + '//' + window.location.hostname,
-          ruta = `${domain}/admin/regisro-usuario`;
-      fetch(`${ruta}`, {
+      fetch("registro-usuario", {
           method: "POST",
           body: new FormData(formregistro)
       }).then(response => response.json()).then(response => {
@@ -136,6 +154,6 @@
           showConfirmButton: false,
           timer: 1500
       }).then(function () {
-          window.location.href = 'pago-cliente';
+          window.location.href = 'inicio';
       });
   }

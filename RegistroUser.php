@@ -96,13 +96,15 @@
                                     <div class="col-12">
                                         <label for="perfil" class="form-label">Perfil</label>
                                         <select class="form-select" name="perfil" id="perfil" aria-label="Default select example">
-                                            <option selected>Selecciona una perfil</option>
+                                            <option selected disabled>Selecciona un perfil</option>
                                             <option value="1">Asesor</option>
                                             <option value="2">Gerente General</option>
                                             <option value="3">Dirección General</option>
                                             <option value="4">Área de TI</option>
                                         </select>
+                                        <div id="mensaje_perfil" class="invalid-feedback d-none">Selecciona un perfil válido.</div>
                                     </div>
+
                                     <div class="col-12">
                                         <div class="form-check">
                                             <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>

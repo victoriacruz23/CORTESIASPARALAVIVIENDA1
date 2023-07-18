@@ -19,7 +19,17 @@ $result = $conexion->conectar()->query($sql);
 if ($result->num_rows == 1) {
     $datos = $conexion->conectar()->query($sql);
     // Usuario válido
-    $_SESSION['datosuser'] = $datos->fetch_assoc();
+    $dato = $datos->fetch_assoc();
+       // Validar y sanitizar los datos antes de asignarlos a la variable de sesión
+       $datos_validados = array(
+        'id' => htmlspecialchars($dato['Id']),
+        'perfil' => htmlspecialchars($dato['Perfil']),
+        'nombre' => htmlspecialchars($dato['Nombre']),
+        'apellidos' => htmlspecialchars($dato['Apellidos']),
+        'nombreclave' => htmlspecialchars($dato['Nick_name']),
+        // Otros campos que quieras incluir en la variable de sesión
+    );
+    $_SESSION['datosuser'] = $datos_validados;
     $row = $result->fetch_assoc();
     $perfil = $row['Perfil'];
     // Retornar respuesta exitosa como JSON

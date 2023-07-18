@@ -74,17 +74,27 @@
            body: new FormData(formlogin)
        }).then(response => response.json()).then(response => {
            if (response.success == true) {
-               if (response.tipo == 1) {
-                   alertair('success', `${response.message}`, 'asesor');
-               } else if (response.tipo == 2) {
-                   alertair('success', `${response.message}`, 'gerente');
-               }
-               if (response.tipo == 3) {
-                   alertair('success', `${response.message}`, 'direccion');
-               } else if (response.tipo == 4) {
-                   alertair('success', `${response.message}`, 'area_de_ti');
-               }else{
-                alerta('error', `No existe ese rol`);
+               console.log(response.tipo);
+               switch (response.tipo) {
+                   case 1:
+                   case "1":
+                       alertair('success', `${response.message}`, 'asesor');
+                       break;
+                   case 2:
+                   case "2":
+                          alertair('success', `${response.message}`, 'gerente');
+                       break;
+                   case 3:
+                   case "3":
+                       alertair('success', `${response.message}`, 'direccion');
+                       break;
+                   case 4:
+                   case "4":
+                       alertair('success', `${response.message}`, 'area_de_ti');
+                       break;
+                   default:
+                       alerta('error', 'No existe ese rol');
+                       break;
                }
                document.getElementById("formlogin").reset();
                return false;
