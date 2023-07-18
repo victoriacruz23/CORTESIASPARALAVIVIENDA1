@@ -1,4 +1,3 @@
-
 <header id="header" class="header fixed-top d-flex align-items-center">
   <!-- <style>
     .resaltado {
@@ -7,13 +6,13 @@
 </style> -->
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center mx-3">
-    <img src="recursos/assets/img/logopv.png" width="auto" height="100%" alt="">
+      <img src="recursos/assets/img/logopv.png" width="auto" height="100%" alt="">
       <span class="d-none d-lg-block">PAVI </span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->
   <?php
-  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+  if (isset($_SESSION['datosuser'])) {
   ?>
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -35,14 +34,21 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="recursos/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['datosuser']['nombre'] ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['datosuser']['nombreclave'] ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php echo $_SESSION['datosuser']['correo']; ?></h6>
-              <span><?php echo ($_SESSION['datosuser']['tipouser'] == 1 ? "Administrador" : "Cleinte"); ?></span>
+              <h6><?php echo $_SESSION['datosuser']['nombre'] . " " . $_SESSION['datosuser']['apellidos']; ?></h6>
+              <span> <?php
+                      $perfil = $_SESSION['datosuser']['perfil'];
+                      $mensaje = ($perfil == 1) ? "Asesor" : (($perfil == 2) ? "Gerente General" : (($perfil == 3) ? "Dirección General" : (($perfil == 4) ? "Área de TI" : "Perfil desconocido")));
+                      echo $mensaje;
+                      ?>
+              </span>
             </li>
+
+
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -95,5 +101,5 @@
     </nav><!-- End Icons Navigation -->
     <!-- <script src="js/cerrarsesion.js"></script>
     <script src="js/busqueda.js"></script> -->
-    <?php } ?>
-  </header>
+  <?php } ?>
+</header>

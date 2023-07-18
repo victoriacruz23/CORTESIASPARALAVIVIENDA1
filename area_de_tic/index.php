@@ -28,7 +28,7 @@ require_once('../databases/validacionsesion.php')
 
         $breadcrumb = new Breadcrumb();
         // Agrega las migas de pan
-        $breadcrumb->addCrumb('Ascesor', '');
+        $breadcrumb->addCrumb('Área de TI', '');
         $breadcrumb->addCrumb('Panel principal');
 
         // Renderiza las migas de pan

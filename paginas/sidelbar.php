@@ -5,17 +5,11 @@
     if (isset($_SESSION['datosuser'])) {
     ?>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?php echo ($_SESSION['datosuser']['tipouser'] == 1 ? "consulta-pago-adminsitracion" : "consulta-pago-cliente"); ?>">
+        <a class="nav-link " href="asesor">
           <i class="bi bi-grid"></i>
-          <span>Historial de pagos</span>
+          <span>Inicio</span>
         </a>
-      </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pago-cliente">
-        <i class="bi bi-credit-card"></i>
-          <span>Pago de curso</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
     <?php
     } else {
     ?>

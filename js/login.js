@@ -90,7 +90,7 @@
                        break;
                    case 4:
                    case "4":
-                       alertair('success', `${response.message}`, 'area_de_ti');
+                       alertair('success', `${response.message}`, 'area-de-ti');
                        break;
                    default:
                        alerta('error', 'No existe ese rol');
