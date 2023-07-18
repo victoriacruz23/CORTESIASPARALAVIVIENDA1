@@ -2,92 +2,153 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro usuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <?php
+    include('paginas/head.php');
+    ?>
 </head>
-<style>
-    .boton {
-        display: inline-block;
-        padding: 10px 20px;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 4px;
-    }
-</style>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="white">
-        <div class="container-fluid">
-            <img class="mx-3" width="350px" height="100px" src="https://www.planvivienda.com.mx/img/logo01.png" alt>
-            <!-- crear cuenta -->
-            <a href="index.php" class="mx-4 btn btn-outline-success" onclick="miFuncion()">Iniciar Sesión</a>
-        </div>
-        <!-- <button class="mx-4 btn btn-outline-success" type="submit">Registrarte</button> -->
-        </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row" style="justify-content: center; margin-top:1%;">
-            <div class="col-sm-9 col-md-5 col-lg-5 col-xl-5 ">
-                <form action="databases/RegistroUsuario.php" class="bg-muted bg-opacity-88 shadow-lg p-3 mb-8 bg-body rounded" method="POST">
-                    <center>
-                    </center>
-                    <h1 class="text-center text-uppercase">Registrarte</h1>
-                    <div class="form-group mb-4">
 
-                        <div class="mb-3">
-                            <label for="usuario" class="form-label ">Nombre</label>
-                            <input type="text" class="form-control border border-success" name="usuario" id="usuario" aria-describedby="usuarioHelp" placeholder="Ingrese su nombre" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="apellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control border border-success" name="apellidos" id="apellidos" placeholder="Ingrese sus Apellidos" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fecha" class="form-label">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control border border-success" name="fecha" id="fecha" required>
+    <?php
+    // <!-- ======= Header ======= -->
+    include("paginas/header.php");
+    // <!-- End Header -->
+    // <!-- ======= Sidebar ======= -->
+    include("paginas/sidelbar.php");
+    // <!-- End Sidebar-->
+    ?>
+    <main id="main" class="main">
+        <?php //echo password_hash("Gatitodeprueba1", PASSWORD_BCRYPT); 
+        ?>
+        <?php
+        include("paginas/migaspan.php");
+
+        $breadcrumb = new Breadcrumb();
+        // Agrega las migas de pan
+        $breadcrumb->addCrumb('Inicio', 'inicio');
+        $breadcrumb->addCrumb('Registro de usuario');
+
+        // Renderiza las migas de pan
+        $breadcrumb->render();
+        ?>
+        <!-- End Page Title -->
+        <section class="section register d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <!-- <div class="d-flex justify-content-center py-4">
+                            <a href="index.html" class="logo d-flex align-items-center w-auto">
+                                <img src="assets/img/logo.png" alt="">
+                                <span class="d-none d-lg-block">NiceAdmin</span>
+                            </a>
+                        </div> -->
+                        <!-- End Logo -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Crea una cuenta</h5>
+                                    <p class="text-center small">Ingrese sus datos personales para crear una cuenta</p>
+                                </div>
+
+                                <form id="formregistro" class="row g-3 needs-validation" method="POST">
+                                    <div class="col-12">
+                                        <label for="usuario" class="form-label">Nombre</label>
+                                        <input type="text" name="usuario" id="usuario" placeholder="Nombre completo" class="form-control" required>
+                                        <p class="text-danger d-none" id="mesaje_usuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="apellidos" class="form-label">Apellidos</label>
+                                        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" required>
+                                        <p class="text-danger d-none" id="mesaje_apellidos">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="fecha" class="form-label">Fecha de Nacimiento</label>
+                                        <input type="date" class="form-control" name="fecha" id="fecha" required>
+                                        <p class="text-danger d-none" id="mesaje_fecha">El campo fecha debe presentar el formato dd/mm/aaaa<span><i class="bi bi-backspace"></i></span></p>
+
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="nameusuario" class="form-label">Idenfificador (NikeName)</label>
+                                        <input type="text" name="nameusuario" id="nameusuario" placeholder="nombre de usuario" class="form-control" required>
+                                        <p class="text-danger d-none" id="mesaje_nameusuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="password" class="form-label">Contraseña</label>
+                                        <div class="input-group">
+                                            <input type="password" placeholder="Ingresa contraseña" name="password" id="password" class="form-control" required>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('password')">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </div>
+                                        <p class="text-danger d-none" id="mesaje_password">El campo contraseña debe tener entre 8 y 20 caracteres. Puede contener letras (mayúsculas y minúsculas), números y algunos caracteres especiales permitidos.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="password1" class="form-label">Confirmar Contraseña</label>
+                                        <div class="input-group">
+                                            <input type="password" placeholder="Ingresa contraseña" name="password1" id="password1" class="form-control" required>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('password1')">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </div>
+                                        <p class="text-danger d-none" id="mesaje_password1">El campo contraseña debe tener entre 8 y 20 caracteres. Puede contener letras (mayúsculas y minúsculas), números y algunos caracteres especiales permitidos.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="perfil" class="form-label">Perfil</label>
+                                        <select class="form-select" name="perfil" id="perfil" aria-label="Default select example">
+                                            <option selected>Selecciona una perfil</option>
+                                            <option value="1">Asesor</option>
+                                            <option value="2">Gerente General</option>
+                                            <option value="3">Dirección General</option>
+                                            <option value="4">Área de TI</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                                            <label class="form-check-label" for="acceptTerms">Estoy de acuerdo y acepto los <a href="#">términos y condiciones</a></label>
+                                            <p class="text-danger d-none" id="mesaje_acceptTerms">Debe estar de acuerdo antes de enviar.<span><i class="bi bi-backspace"></i></span></p>
+                                        </div>
+                                    </div>
+                                    <p class="text-danger d-none" id="mesaje_passwordif">El campo contraseña debe tener entre 8 y 20 caracteres. Puede contener letras (mayúsculas y minúsculas), números y algunos caracteres especiales permitidos.<span><i class="bi bi-backspace"></i></span></p>
+                                    <div class="col-12" id="btnregistrouser">
+                                        <button class="btn btn-primary w-100" onclick="registrar(event);" type="submit">Crea una cuenta</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="small mb-0">¿Ya tienes una cuenta? <a href="inicio">Acceso</a></p>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="nameusuario" class="form-label">Nickname</label>
-                            <input type="text" class="form-control border border-success" name="nameusuario" id="nameusuario" placeholder="Nombre de usuario" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control border border-success" name="password" id="password" aria-describedby="usuarioHelp" placeholder="Defina una contraseña" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="verifica" class="form-label">Verificacion de Contraseña</label>
-                            <input type="password" class="form-control border border-success" name=" verifica" id="verifica" aria-describedby="usuarioHelp" placeholder="Verifique su contraseña" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="perfil" class="form-label">Perfil</label>
-                            <select class="form-control border border-success" name="perfil" id="perfil" aria-describedby="usuarioHelp" placeholder="Selecciona tu perfil" required>   
-                            <option value="1">Asesor</option>
-                            <option value="2">Gerente General</option>
-                            <option value="3">Dirección General</option>
-                            <option value="4">Área de TI</option>
-                        </select><br>  
-                        </div>
-                        
-                        <center>
-                            <button type="submit" class="btn btn-outline-success">Registrarte</button>
-                        </center>
-                </form>
-                <!-- crear cuenta -->
-
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <!-- scripts  -->
 
+        </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
-    </script>
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <?php
+    include("paginas/footer.php");
+    ?>
+    <!-- End Footer -->
+    <script src="js/registro.js"></script>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="recursos/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="recursos/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="recursos/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="recursos/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="recursos/assets/vendor/quill/quill.min.js"></script>
+    <script src="recursos/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="recursos/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="recursos/assets/vendor/php-email-form/validate.js"></script>
+
+    <script src="recursos/assets/js/main.js"></script>
+
 </body>
 
 </html>

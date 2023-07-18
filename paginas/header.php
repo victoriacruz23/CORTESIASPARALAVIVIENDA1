@@ -7,7 +7,7 @@
 </style> -->
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center mx-3">
-    <img src="recursos/assets/img/TLC-logo.jpg" width="auto" height="100%" alt="">
+    <img src="recursos/assets/img/logopv.png" width="auto" height="100%" alt="">
       <span class="d-none d-lg-block">PAVI </span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
