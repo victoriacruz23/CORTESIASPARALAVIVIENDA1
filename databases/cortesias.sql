@@ -4,7 +4,7 @@ CREATE TABLE rolperfil_01(
     PerfilId INT PRIMARY KEY AUTO_INCREMENT,
     NombrePerfil varchar(50) NOT NULL
 );
-INSERT INTO `rolperfil_01` (`PerfilId`,`NombrePerfil`)
+INSERT INTO rolperfil_01 (`PerfilId`,`NombrePerfil`)
 VALUES (NULL,'Asesor'), (NULL,'Gerente General'), (NULL,'Dirección General'), (NULL,'Área de TI');
 
 CREATE TABLE usuario_01(
@@ -22,7 +22,7 @@ CREATE TABLE perfil_01(
     Usuario_id INT UNIQUE,
     Foto varchar(100) NOT NULL,
     Telefono INT,
-    CONSTRAINT USUARIO_01_FK FOREIGN KEY (Usuario_id) REFERENCES USUARIO_01(Id)
+    CONSTRAINT usuario_01_FK FOREIGN KEY (Usuario_id) REFERENCES usuario_01(Id)
 );
 CREATE TABLE depositos_01(
     Id INT PRIMARY KEY AUTO_INCREMENT,
@@ -38,13 +38,11 @@ CREATE TABLE cortesias_01(
 CREATE TABLE colaborador(
     Id_colaborador INT PRIMARY KEY AUTO_INCREMENT, 
     Nombre_colaborador varchar(50),
-    Apellidos varchar(50),
-
-
+    Apellidos varchar(50)
 );
 CREATE TABLE cancelaciones(
     id_cancelacion_ahorros INT PRIMARY KEY AUTO_INCREMENT,
-    estatus BIT NOT NULL, 
+    estatus BOOLEAN NOT NULL DEFAULT FALSE, 
     Nombre_afiliado VARCHAR(250) NOT NULL, 
     referencia VARCHAR(100) NOT NULL,
     email CHARACTER(150) NOT NULL, 
@@ -55,12 +53,9 @@ CREATE TABLE cancelaciones(
 );
 CREATE TABLE Afiliado(
     Id_afiliado INT PRIMARY KEY AUTO_INCREMENT,
-
 );
 CREATE TABLE liquidacion(
     Id_liquidacion INT PRIMARY KEY AUTO_INCREMENT,
     Afiliado_li INT,
-    CONSTRAINT Afiliado_FK FOREIGN KEY 
-
-
+     CONSTRAINT Afiliado_FK FOREIGN KEY (Afiliado_li) REFERENCES Afiliado(Id_afiliado)
 );
