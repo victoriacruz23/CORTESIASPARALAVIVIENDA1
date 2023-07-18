@@ -1,0 +1,11 @@
+Options All -Indexes
+RewriteEngine on
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^inicio/?$ index.php
+RewriteRule ^registro$ RegistroUser.php [L]
+RewriteRule ^inicio-session$ databases/login.php [L]
+RewriteRule ^asesor$ asesor/index.php [L]
+RewriteRule ^gerente$ gerente/index.php [L]
+RewriteRule ^direccion$ direccion/index.php [L]
+RewriteRule ^area_de_ti$ area_de_ti/index.php [L]

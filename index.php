@@ -1,69 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesion</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Plan vivienda </title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <!-- <link href="recursos/assets/img/1500.png" rel="icon">
+    <link href="recursos/assets/img/1500.png" rel="apple-touch-icon"> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="recursos/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="recursos/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="recursos/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="recursos/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="recursos/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="recursos/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="recursos/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="recursos/assets/css/style.css" rel="stylesheet">
 </head>
-<style>
-        .boton {
-            display: inline-block;
-            padding: 10px 20px;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-    </style>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary"  data-bs-theme="white">
-  <div class="container-fluid">
-  <img class="mx-4" width="350px" height="100px" src="https://www.planvivienda.com.mx/img/logo01.png" alt>   
-         <!-- crear cuenta -->
-         <a href="RegistroUser.php" class="mx-4 btn btn-outline-success" onclick="miFuncion()">Crear cuenta nueva</a>
-            </div>
-        <!-- <button class="mx-4 btn btn-outline-success" type="submit">Registrarte</button> -->
-    </div>
-  </div>
-</nav>
-    <!-- contenedor principal -->
-    <div class="container">
-        <!-- contenedor de filas -->
-        <!-- <div class="row">  -->
-        <!-- contendores de columnas -->
-        <div class="row" style="justify-content: center; margin-top:1%;">
+    
+    <?php
+    // <!-- ======= Header ======= -->
+    include("paginas/header.php");
+    // <!-- End Header -->
+    // <!-- ======= Sidebar ======= -->
+    include("paginas/sidelbar.php");
+    // <!-- End Sidebar-->
+    ?>
+    <main id="main" class="main">
+    <?php //echo password_hash("Gatitodeprueba1", PASSWORD_BCRYPT); ?>
+        <?php
+        include("paginas/migaspan.php");
 
-            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
-                <form action="databases/login.php" class="bg-white bg-opacity-75 shadow-lg p-3 mb-2 bg-body rounded" method="POST">
-                    <center>
-                    </center>
-                    <h3 class="text-center text-uppercase">Inicio sesion</h3>
-                    <div class="form-group mb-4">
-                    <img  width="320px" height="100px" src="https://3.bp.blogspot.com/-XsTUyRBdi5Y/VWw3uQdyg7I/AAAAAAAAANg/AS53RbVG8iQ/s1600/Como-integrar-al-nuevo-personal-a-la-empresa.jpg" alt>
-                        <div class="mb-3">
-                            <label for="nameusuario" class="form-label ">NickName</label>
-                            <input type="text" class="form-control border border-success" name="nameusuario" id="nameusuario" aria-describedby="usuarioHelp" placeholder="Ingrese el nombre de usuario" required>
+        $breadcrumb = new Breadcrumb();
+        // Agrega las migas de pan
+        $breadcrumb->addCrumb('Inicio', 'inicio');
+        $breadcrumb->addCrumb('Inicio de sesion');
+
+        // Renderiza las migas de pan
+        $breadcrumb->render();
+        ?>
+        <!-- End Page Title -->
+        <section class="section register d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <!-- <div class="d-flex justify-content-center py-4">
+                            <a href="index.html" class="logo d-flex align-items-center w-auto">
+                                <img src="assets/img/logo.png" alt="">
+                                <span class="d-none d-lg-block">NiceAdmin</span>
+                            </a>
+                        </div> -->
+                        <!-- End Logo -->
+                        <div class="card mb-3">
+                            <div class="card-body">
+
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Ingrese a su cuenta</h5>
+                                    <p class="text-center small">Ingrese su nombre de usuario y contraseña para iniciar sesión</p>
+                                </div>
+
+                                <form id="formlogin" class="row g-3 needs-validation" novalidate>
+                                    <div class="col-12">
+                                        <label for="nameusuario" class="form-label">Nombre idenfificador</label>
+                                        <input type="text" name="nameusuario" id="nameusuario" placeholder="nombre de usuario" class="form-control" required>
+                                        <p class="text-danger d-none" id="mesaje_nameusuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="password" class="form-label">Contraseña</label>
+                                        <div class="input-group">
+                                            <input type="password" placeholder="Ingresa contraseña" name="password" id="password" class="form-control" required>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('password')">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </div>
+                                        <p class="text-danger d-none" id="mesaje_password">El campo contraseña debe tener entre 8 y 20 caracteres. Puede contener letras (mayúsculas y minúsculas), números y algunos caracteres especiales permitidos.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100" onclick="login(event);" type="submit">Accesso</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="small mb-0">¿No tienes cuenta?<a href="registro">Crea una cuenta</a></p>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="password" class="form-label ">Contraseña</label>
-                            <input type="password" class="form-control border border-success " name="password" id="password" aria-describedby="usuarioHelp" placeholder="Ingrese su contraseña" required>
-                        </div>
-                        <center>
-                            <button type="submit" class="btn btn-outline-success">Iniciar Sesion</button>
-                        </center>
-                </form>
-                </form>
-               
-           
-        </div>
-    </div>
-    <!-- scripts  -->
-    </div>
-    </div>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
-    </script>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <?php
+    include("paginas/footer.php");
+    ?>
+    <!-- End Footer -->
+    <script src="js/login.js"></script>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="recursos/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="recursos/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="recursos/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="recursos/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="recursos/assets/vendor/quill/quill.min.js"></script>
+    <script src="recursos/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="recursos/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="recursos/assets/vendor/php-email-form/validate.js"></script>
+
+    <script src="recursos/assets/js/main.js"></script>
+
 </body>
+
+</html>

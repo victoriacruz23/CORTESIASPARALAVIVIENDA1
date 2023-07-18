@@ -1,5 +1,11 @@
 <?php
 session_start();
+// Validar el método de solicitud
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $response = array("success" => false, "message" => "Acceso denegado");
+    echo json_encode($response);
+    exit();
+}
 require_once("conexion.php");
 $conexion = new Conexion;
 // print_r($_POST);
@@ -16,22 +22,11 @@ if ($result->num_rows == 1) {
     $_SESSION['datosuser'] = $datos->fetch_assoc();
     $row = $result->fetch_assoc();
     $perfil = $row['Perfil'];
-
-    // Redireccionar según el perfil del usuario
-    if ($perfil == 1) {
-        header("Location: ../asesor/index.php");
-    } elseif ($perfil == 2) {
-        header("Location: ../gerente/index.php");
-    } elseif ($perfil == 3) {
-        header("Location: ../direccion/index.php");
-    } elseif ($perfil == 4) {
-        header("Location: ../area_de_ti/index.php");
-    } else {
-        echo "Perfil desconocido";
-    }
+    // Retornar respuesta exitosa como JSON
+    $response = array("success" => true, "message" => "Inicio de sesión exitoso", "tipo" => $perfil);
+    echo json_encode($response);
 } else {
-    // Usuario inválido
-    echo "Credenciales de inicio de sesión incorrectas";
-}
+    $response = array("success" => false, "message" => "Error al inciar sesion");
+    echo json_encode($response);
 
-?>
+}
