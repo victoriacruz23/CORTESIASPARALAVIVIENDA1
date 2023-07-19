@@ -5,6 +5,7 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteRule ^inicio$ index.php
 RewriteRule ^registro$ RegistroUser.php [L]
 RewriteRule ^inicio-session$ databases/login.php [L]
+RewriteRule ^cerrar-session$ databases/cerrarsesion.php [L]
 RewriteRule ^registro-usuario$ databases/RegistroUsuario.php [L]
 
 RewriteRule ^asesor$ asesorc/index.php [L]

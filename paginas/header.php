@@ -5,7 +5,7 @@
     }
 </style> -->
   <div class="d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center mx-3">
+    <a href="inicio" class="logo d-flex align-items-center mx-3">
       <img src="recursos/assets/img/logopv.png" width="auto" height="100%" alt="">
       <span class="d-none d-lg-block">PAVI </span>
     </a>
@@ -99,7 +99,7 @@
 
       </ul>
     </nav><!-- End Icons Navigation -->
-    <!-- <script src="js/cerrarsesion.js"></script>
-    <script src="js/busqueda.js"></script> -->
+    <script src="js/cerrarsesion.js"></script>
+    <script src="js/busqueda.js"></script>
   <?php } ?>
 </header>
