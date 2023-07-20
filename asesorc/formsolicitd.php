@@ -1,5 +1,6 @@
 <?php
 require_once('../databases/validacionsesion.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +39,7 @@ require_once('../databases/validacionsesion.php');
         <section class="section register d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-12 col-md-12 d-flex flex-column align-items-center justify-content-center">
+                    <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
                         <!-- <div class="d-flex justify-content-center py-4">
                             <a href="index.html" class="logo d-flex align-items-center w-auto">
                                 <img src="assets/img/logo.png" alt="">
@@ -48,46 +49,41 @@ require_once('../databases/validacionsesion.php');
                         <!-- End Logo -->
                         <div class="card mb-3">
                             <div class="card-body">
-                            <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Crea una cuenta</h5>
-                                    <p class="text-center small">Ingrese sus datos personales para crear una cuenta</p>
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Solicitud de cortesías</h5>
+                                    <p class="text-center small">Ingrese sus datos para la solicitud</p>
                                 </div>
 
                                 <form id="formregistro" class="row g-3 needs-validation" method="POST">
+
                                     <div class="col-12">
-                                        <label for="usuario" class="form-label">Nombre</label>
-                                        <input type="text" name="usuario" id="usuario" placeholder="Nombre completo" class="form-control" required>
+                                        <label for="usuario" class="form-label">Asesor solicitud</label>
+                                        <p class="form-control is-valid"><?php echo $_SESSION['datosuser']['nombre'] . " " . $_SESSION['datosuser']['apellidos']; ?></p>
+                                    </div>
+                                    <div id="nombreafi"></div>
+
+                                    <div id="referenciafi"></div>
+                                    <input type="hidden" name="clientereferencia" value="<?php echo $_GET["referencia"]; ?>" id="clientereferencia">
+                                    <div class="col-12">
+                                        <label for="usuario" class="form-label">Monto a pagar</label>
+                                        <input type="number" name="montocompleto" value="0" id="montocompleto" placeholder="Escribe el monto a pagar" class="form-control" required>
                                         <p class="text-danger d-none" id="mesaje_usuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
                                     </div>
                                     <div class="col-12">
-                                        <label for="apellidos" class="form-label">Apellidos</label>
-                                        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" class="form-control" required>
-                                        <p class="text-danger d-none" id="mesaje_apellidos">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="fecha" class="form-label">Fecha de Nacimiento</label>
-                                        <input type="date" class="form-control" name="fecha" id="fecha" required>
-                                        <p class="text-danger d-none" id="mesaje_fecha">El campo fecha debe presentar el formato dd/mm/aaaa<span><i class="bi bi-backspace"></i></span></p>
-
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="nameusuario" class="form-label">Idenfificador (NikeName)</label>
-                                        <input type="text" name="nameusuario" id="nameusuario" placeholder="nombre de usuario" class="form-control" required>
-                                        <p class="text-danger d-none" id="mesaje_nameusuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
-                                    </div>
-                                   
-                                    <div class="col-12">
-                                        <label for="perfil" class="form-label">Perfil</label>
-                                        <select class="form-select" name="perfil" id="perfil" aria-label="Default select example">
-                                            <option selected disabled>Selecciona un perfil</option>
-                                            <option value="1">Asesor</option>
-                                            <option value="2">Gerente General</option>
-                                            <option value="3">Dirección General</option>
-                                            <option value="4">Área de TI</option>
+                                        <label for="perfil" class="form-label">Tipo de cortesía</label>
+                                        <select class="form-select" name="cortesia" id="cortesia" aria-label="Default select example">
+                                            <option selected disabled>Selecciona una cortesía</option>
+                                            <option value="1">Parcial</option>
+                                            <option value="2">Completa</option>
+                                            <option value="3">De campaña</option>
                                         </select>
                                         <div id="mensaje_perfil" class="invalid-feedback d-none">Selecciona un perfil válido.</div>
                                     </div>
-
+                                    <div class="col-12 d-none" id="divparcial">
+                                        <label for="usuario" class="form-label">Monto de descuento</label>
+                                        <input type="number" name="montodescuento" value="0" id="montodescuento" placeholder="Escribe el descuento" class="form-control" required>
+                                        <p class="text-danger d-none" id="mesaje_usuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-check">
                                             <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
@@ -111,7 +107,7 @@ require_once('../databases/validacionsesion.php');
             </div>
 
         </section>
-        <input type="text" name="" value="<?php echo $_GET["referencia"]; ?>" id="referencias">
+        <input type="hidden" name="" value="<?php echo $_GET["referencia"]; ?>" id="referencias">
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
@@ -132,25 +128,86 @@ require_once('../databases/validacionsesion.php');
 
     <script src="recursos/assets/js/main.js"></script>
     <script>
+        const cortesiaSelect = document.getElementById("cortesia");
+        const divparcial = document.getElementById("divparcial");
+
+        cortesiaSelect.addEventListener("change", function() {
+            const valorSeleccionado = cortesiaSelect.value;
+            if (valorSeleccionado === "1") {
+                divparcial.classList.remove("d-none");
+            } else {
+                divparcial.classList.add("d-none");
+                document.getElementById('montodescuento').value = 0;
+            }
+        });
         consulta();
+        // CONSULTA A LA BASE DE DATOS DEL SERVIDOR 
         function consulta() {
             let userreference = document.getElementById("referencias").value;
-            alert(userreference);
+            // alert(userreference);
             fetch("asesorc/dt.json", {})
                 .then(response => response.json())
                 .then(response => {
+                    // arreglo para insertar
+                    const clienteEncontrado = response.find(cliente => cliente.REFERENCIA_AFI === userreference);
+                    // console.log(clienteEncontrado);
+                    if (clienteEncontrado) {
+                        const datos = {
+                            REFERENCIA_AFI: clienteEncontrado.REFERENCIA_AFI,
+                            REFERENCIA_AH: clienteEncontrado.REFERENCIA_AH,
+                            PATERNO: clienteEncontrado.PATERNO,
+                            MATERNO: clienteEncontrado.MATERNO,
+                            NOMBRES: clienteEncontrado.NOMBRES,
+                            SEXO: clienteEncontrado.SEXO,
+                            CORREO: clienteEncontrado.CORREO,
+                            MUNICIPIO: clienteEncontrado.MUNICIPIO,
+                            SALDO: clienteEncontrado.SALDO
+                        };
+                        nuevocliente(datos);
+                    }
+                    // cliclar para presentar
                     response.forEach(cliente => {
-                        if (cliente.REFERENCIA_AFI === `${referencias}`) {
-                                cliente.PATERNO
-                                cliente.MATERNO
-                                cliente.NOMBRES
-                                cliente.CELULAR
-                                cliente.REFERENCIA_AFI
-                                cliente.MUNICIPIO
+                        if (cliente.REFERENCIA_AFI === `${userreference}`) {
+                            const nombreafiElement = document.getElementById("nombreafi");
+                            // alert(userreference);
+                            nombreafiElement.innerHTML = `
+                            <div class="col-12">
+                                <label for="usuario" class="form-label">Afiliado</label>
+                                <p class="form-control is-valid" id="">${cliente.PATERNO} ${cliente.MATERNO} ${cliente.NOMBRES}</p>
+                            </div>
+                            `;
+                            referenciafi.innerHTML = `
+                              <div class="col-12">
+                                 <label for="usuario" class="form-label">Referencia Afiliado</label>
+                                 <p class="form-control is-valid" >${cliente.REFERENCIA_AFI}</p>
+                              </div>
+                            `;
                         }
                     });
 
                 });
+        }
+
+        function nuevocliente(datos) {
+            fetch("databases/insertarcliente.php", {
+                    method: "POST",
+                    body: JSON.stringify(datos) // Convertimos los datos a formato JSON antes de enviarlos
+                })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.success == false) {
+                        alerta('error', `${response.message}`);
+                    }
+                });
+        }
+
+        function alerta(icono, titulo) {
+            Swal.fire({
+                icon: icono,
+                title: titulo,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     </script>
 </body>

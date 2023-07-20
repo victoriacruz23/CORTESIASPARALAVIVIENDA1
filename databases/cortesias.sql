@@ -41,14 +41,15 @@ CREATE TABLE depositos_01(
     Fecha_de_deposito date
 );
 
-CREATE TABLE cliente_01(
+CREATE TABLE afiliado_01(
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    REFERENCIA_AFI varchar(50),
-    REFERENCIA_AH varchar(50),
+    REFERENCIA_AFI varchar(50) NOT NULL,
+    REFERENCIA_AH varchar(50) NOT NULL,
     PATERNO varchar(50),
     MATERNO varchar(50),
     NOMBRES varchar(50),
     SEXO varchar(50),
+    CORREO varchar(50),
     MUNICIPIO varchar(50),
     SALDO varchar(50)
 );
@@ -56,10 +57,13 @@ CREATE TABLE cliente_01(
 CREATE TABLE cortesias_01(
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Usuario_id INT,
+    Afiliado_id INT,
     referenciacliente VARCHAR(50) NOT NULL,
     Tipo_cortesia varchar(50),
     Descripcion TEXT,
-    CONSTRAINT usuario_01_corteFK FOREIGN KEY (Usuario_id) REFERENCES usuario_01(Id)
+    Fecha_solicitud DATE NOT NULL DEFAULT CURDATE(),
+    CONSTRAINT usuario_01_corteFK FOREIGN KEY (Usuario_id) REFERENCES usuario_01(Id),
+    CONSTRAINT afiliado_01_corteFK FOREIGN KEY (Afiliado_id) REFERENCES afiliado_01(Id)
 );
 
 CREATE TABLE colaborador(
@@ -80,12 +84,8 @@ CREATE TABLE cancelaciones(
     fecha DATE NOT NULL
 );
 
-CREATE TABLE Afiliado(
-    Id_afiliado INT PRIMARY KEY AUTO_INCREMENT,
-);
-
 CREATE TABLE liquidacion(
     Id_liquidacion INT PRIMARY KEY AUTO_INCREMENT,
     Afiliado_li INT,
-    CONSTRAINT Afiliado_FK FOREIGN KEY (Afiliado_li) REFERENCES Afiliado(Id_afiliado)
+    CONSTRAINT Afiliado_FK FOREIGN KEY (Afiliado_li) REFERENCES afiliado_01(Id)
 );

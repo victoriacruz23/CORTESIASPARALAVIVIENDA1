@@ -8,8 +8,8 @@ require_once('../databases/validacionsesion.php')
     <?php
     include('../paginas/head.php');
     ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body>
@@ -109,7 +109,8 @@ require_once('../databases/validacionsesion.php')
     <script src="recursos/assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+  
     <script>
         function consulta() {
 
@@ -127,6 +128,7 @@ require_once('../databases/validacionsesion.php')
         });
 
         function listarclientes() {
+            // fetch("consulta-clientes", {})
             fetch("asesorc/dt.json", {})
                 .then(response => response.json())
                 .then(response => {
