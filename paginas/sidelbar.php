@@ -13,6 +13,13 @@
               <span>Inicio Asesor</span>
             </a>
           </li>
+          <!-- caso 1 -->
+          <li class="nav-item">
+            <a class="nav-link " href="solicitud-cortesia">
+            <i class="bi bi-file-diff"></i>
+              <span>Solicitud cortesía </span>
+            </a>
+          </li>
         <?php
           break;
         case 2:

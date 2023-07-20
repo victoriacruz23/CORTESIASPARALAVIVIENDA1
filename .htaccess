@@ -9,6 +9,9 @@ RewriteRule ^cerrar-session$ databases/cerrarsesion.php [L]
 RewriteRule ^registro-usuario$ databases/RegistroUsuario.php [L]
 
 RewriteRule ^asesor$ asesorc/index.php [L]
+RewriteRule ^solicitud-cortesia$ asesorc/solicitud.php [L]
+RewriteRule ^formulario-cortesia-([A-Za-z0-9\.]+)?$ asesorc/formsolicitd.php?referencia=$1 
+
 RewriteRule ^gerente$ gerentec/index.php [L]
 RewriteRule ^direccion$ direccionc/index.php [L]
 RewriteRule ^area-de-ti$ area_de_tic/index.php [L]

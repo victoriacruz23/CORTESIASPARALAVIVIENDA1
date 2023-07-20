@@ -82,7 +82,7 @@
                        break;
                    case 2:
                    case "2":
-                          alertair('success', `${response.message}`, 'gerente');
+                       alertair('success', `${response.message}`, 'gerente');
                        break;
                    case 3:
                    case "3":

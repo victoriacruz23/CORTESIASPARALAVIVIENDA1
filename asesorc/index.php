@@ -65,7 +65,6 @@ require_once('../databases/validacionsesion.php')
     include("../paginas/footer.php");
     ?>
     <!-- End Footer -->
-    <script src="js/registro.js"></script>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <!-- Vendor JS Files -->
     <script src="recursos/assets/vendor/apexcharts/apexcharts.min.js"></script>
