@@ -1,6 +1,16 @@
    //validacion formulario 
    const formEv = document.getElementById('formlogin');
    const inputs = document.querySelectorAll('#formlogin input');
+   formEv.addEventListener('input', (event) => {
+       // Obtener el elemento que disparó el evento (el input)
+       const inputElement = event.target;
+
+       // Verificar si el input es de tipo texto o email
+       if (inputElement.type === 'text' || inputElement.type === 'email') {
+           // Convertir el valor del input a mayúsculas
+           inputElement.value = inputElement.value.toUpperCase();
+       }
+   });
    const expresiones = {
        nameusuario: /^[a-zA-Z0-9À-ÿ\s]{3,50}$/, // Letras, numeros, guion y guion_bajo,
        password: /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9!@#$%^&*()-=_+]{8,20}$/,

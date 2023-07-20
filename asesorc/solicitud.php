@@ -75,7 +75,7 @@ require_once('../databases/validacionsesion.php')
                                             <th>Referencia Afiliado</th>
                                             <th>Municipio</th>
                                             <th>Solicitar</th>
-                                            
+
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -110,86 +110,7 @@ require_once('../databases/validacionsesion.php')
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
-  
-    <script>
-        function consulta() {
-
-            fetch("asesorc/dt.json", {})
-                .then(response => response.json())
-                .then(response => {
-                    response.forEach(cliente => {
-                        console.log(cliente.SEXO);
-                    });
-                });
-
-        }
-        $(document).ready(function() {
-            listarclientes();
-        });
-
-        function listarclientes() {
-            // fetch("consulta-clientes", {})
-            fetch("asesorc/dt.json", {})
-                .then(response => response.json())
-                .then(response => {
-                    // console.log(response);
-                    $("#cuerpotabla").empty(); // Vaciar el contenido actual antes de agregar los nuevos datos
-                    let rows = response.map(cliente => [
-                        cliente.PATERNO,
-                        cliente.MATERNO,
-                        cliente.NOMBRES,
-                        cliente.CELULAR,
-                        cliente.REFERENCIA_AFI,
-                        cliente.MUNICIPIO,
-                        `<a href="formulario-cortesia-${cliente.REFERENCIA_AFI}" class="btn btn-primary">Solicitar</a>`
-                    ]);
-
-                    InicializarDataTable(rows); // Llamada a la función para inicializar el DataTable
-                    // Llamada a la función para inicializar o reconstruir el DataTable
-                });
-        };
-
-        // $("#tablaSolicitud").DataTable({
-        //     language: {
-        //         url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
-        //     }
-        // });
-
-        function InicializarDataTable(rows) {
-            if ($.fn.DataTable.isDataTable("#tablaSolicitud")) {
-                $("#tablaSolicitud").DataTable().destroy();
-            }
-            $("#tablaSolicitud").empty(); // Vaciar el contenido de la tabla antes de reconstruir
-            $("#tablaSolicitud").DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
-                },
-                data: rows,
-                columns: [
-                    {
-                        title: "Apellido"
-                    },
-                    {
-                        title: "Apellido"
-                    },{
-                        title: "Nombre"
-                    },
-                    {
-                        title: "Celular"
-                    },
-                    {
-                        title: "Referencia Afiliado"
-                    },
-                    {
-                        title: "Municipio"
-                    },
-                    {
-                        title: "Solicitar"
-                    }
-                ]
-            });
-        }
-    </script>
+    <script src="js/solicitud.js"></script>
 </body>
 
 </html>

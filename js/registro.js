@@ -1,6 +1,19 @@
   //validacion formulario 
   const formEv = document.getElementById('formregistro');
   const inputs = document.querySelectorAll('#formregistro input');
+  // Agregar evento para escuchar cambios en los inputs
+  //   const formEvq = document.getElementById('formregistro');
+  formEv.addEventListener('input', (event) => {
+      // Obtener el elemento que disparó el evento (el input)
+      const inputElement = event.target;
+
+      // Verificar si el input es de tipo texto o email
+      if (inputElement.type === 'text' || inputElement.type === 'email') {
+          // Convertir el valor del input a mayúsculas
+          inputElement.value = inputElement.value.toUpperCase();
+      }
+  });
+
   const expresiones = {
       nombre: /^[a-zA-Z0-9À-ÿ\s]{3,50}$/, // Letras, numeros, guion y guion_bajo
       fecha: /^\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[1-2][0-9]|3[0-1])$/,

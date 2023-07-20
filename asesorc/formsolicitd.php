@@ -53,11 +53,9 @@ require_once('../databases/validacionsesion.php');
                                     <h5 class="card-title text-center pb-0 fs-4">Solicitud de cortesías</h5>
                                     <p class="text-center small">Ingrese sus datos para la solicitud</p>
                                 </div>
-
-                                <form id="formregistro" class="row g-3 needs-validation" method="POST">
-
+                                <form id="formsolicitud" class="row g-3 needs-validation" method="POST">
                                     <div class="col-12">
-                                        <label for="usuario" class="form-label">Asesor solicitud</label>
+                                        <label class="form-label">Asesor solicitud</label>
                                         <p class="form-control is-valid"><?php echo $_SESSION['datosuser']['nombre'] . " " . $_SESSION['datosuser']['apellidos']; ?></p>
                                     </div>
                                     <div id="nombreafi"></div>
@@ -65,24 +63,29 @@ require_once('../databases/validacionsesion.php');
                                     <div id="referenciafi"></div>
                                     <input type="hidden" name="clientereferencia" value="<?php echo $_GET["referencia"]; ?>" id="clientereferencia">
                                     <div class="col-12">
-                                        <label for="usuario" class="form-label">Monto a pagar</label>
+                                        <label for="montocompleto" class="form-label">Monto a pagar</label>
                                         <input type="number" name="montocompleto" value="0" id="montocompleto" placeholder="Escribe el monto a pagar" class="form-control" required>
-                                        <p class="text-danger d-none" id="mesaje_usuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
+                                        <p class="text-danger d-none" id="mesaje_montocompleto">El campo monto a pagar debe ser mayor a 4 digitos y menor a 15.<span><i class="bi bi-backspace"></i></span></p>
                                     </div>
                                     <div class="col-12">
-                                        <label for="perfil" class="form-label">Tipo de cortesía</label>
+                                        <label for="cortesia" class="form-label">Tipo de cortesía</label>
                                         <select class="form-select" name="cortesia" id="cortesia" aria-label="Default select example">
                                             <option selected disabled>Selecciona una cortesía</option>
                                             <option value="1">Parcial</option>
                                             <option value="2">Completa</option>
                                             <option value="3">De campaña</option>
                                         </select>
-                                        <div id="mensaje_perfil" class="invalid-feedback d-none">Selecciona un perfil válido.</div>
+                                        <div id="mensaje_cortesia" class="invalid-feedback d-none">Selecciona un perfil válido.</div>
                                     </div>
                                     <div class="col-12 d-none" id="divparcial">
-                                        <label for="usuario" class="form-label">Monto de descuento</label>
+                                        <label for="montodescuento" class="form-label">Monto de descuento</label>
                                         <input type="number" name="montodescuento" value="0" id="montodescuento" placeholder="Escribe el descuento" class="form-control" required>
-                                        <p class="text-danger d-none" id="mesaje_usuario">El campo nombré debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
+                                        <p class="text-danger d-none" id="mesaje_montodescuento">El campo monto de descuento debe ser del 0 al 100.<span><i class="bi bi-backspace"></i></span></p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="descripcion" class="form-label">Descripción</label>
+                                        <input type="text" name="descripcion" id="descripcion" placeholder="Descripción de la solicitud" class="form-control" required>
+                                        <p class="text-danger d-none" id="mesaje_descripcion">El campo descripción debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">
@@ -127,89 +130,7 @@ require_once('../databases/validacionsesion.php');
     <script src="recursos/assets/vendor/php-email-form/validate.js"></script>
 
     <script src="recursos/assets/js/main.js"></script>
-    <script>
-        const cortesiaSelect = document.getElementById("cortesia");
-        const divparcial = document.getElementById("divparcial");
-
-        cortesiaSelect.addEventListener("change", function() {
-            const valorSeleccionado = cortesiaSelect.value;
-            if (valorSeleccionado === "1") {
-                divparcial.classList.remove("d-none");
-            } else {
-                divparcial.classList.add("d-none");
-                document.getElementById('montodescuento').value = 0;
-            }
-        });
-        consulta();
-        // CONSULTA A LA BASE DE DATOS DEL SERVIDOR 
-        function consulta() {
-            let userreference = document.getElementById("referencias").value;
-            // alert(userreference);
-            fetch("asesorc/dt.json", {})
-                .then(response => response.json())
-                .then(response => {
-                    // arreglo para insertar
-                    const clienteEncontrado = response.find(cliente => cliente.REFERENCIA_AFI === userreference);
-                    // console.log(clienteEncontrado);
-                    if (clienteEncontrado) {
-                        const datos = {
-                            REFERENCIA_AFI: clienteEncontrado.REFERENCIA_AFI,
-                            REFERENCIA_AH: clienteEncontrado.REFERENCIA_AH,
-                            PATERNO: clienteEncontrado.PATERNO,
-                            MATERNO: clienteEncontrado.MATERNO,
-                            NOMBRES: clienteEncontrado.NOMBRES,
-                            SEXO: clienteEncontrado.SEXO,
-                            CORREO: clienteEncontrado.CORREO,
-                            MUNICIPIO: clienteEncontrado.MUNICIPIO,
-                            SALDO: clienteEncontrado.SALDO
-                        };
-                        nuevocliente(datos);
-                    }
-                    // cliclar para presentar
-                    response.forEach(cliente => {
-                        if (cliente.REFERENCIA_AFI === `${userreference}`) {
-                            const nombreafiElement = document.getElementById("nombreafi");
-                            // alert(userreference);
-                            nombreafiElement.innerHTML = `
-                            <div class="col-12">
-                                <label for="usuario" class="form-label">Afiliado</label>
-                                <p class="form-control is-valid" id="">${cliente.PATERNO} ${cliente.MATERNO} ${cliente.NOMBRES}</p>
-                            </div>
-                            `;
-                            referenciafi.innerHTML = `
-                              <div class="col-12">
-                                 <label for="usuario" class="form-label">Referencia Afiliado</label>
-                                 <p class="form-control is-valid" >${cliente.REFERENCIA_AFI}</p>
-                              </div>
-                            `;
-                        }
-                    });
-
-                });
-        }
-
-        function nuevocliente(datos) {
-            fetch("databases/insertarcliente.php", {
-                    method: "POST",
-                    body: JSON.stringify(datos) // Convertimos los datos a formato JSON antes de enviarlos
-                })
-                .then(response => response.json())
-                .then(response => {
-                    if (response.success == false) {
-                        alerta('error', `${response.message}`);
-                    }
-                });
-        }
-
-        function alerta(icono, titulo) {
-            Swal.fire({
-                icon: icono,
-                title: titulo,
-                showConfirmButton: false,
-                timer: 1500
-            })
-        }
-    </script>
+    <script src="js/formcortesia.js"></script>
 </body>
 
 </html>
