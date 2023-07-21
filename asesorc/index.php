@@ -8,6 +8,8 @@ require_once('../databases/validacionsesion.php')
     <?php
     include('../paginas/head.php');
     ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body>
@@ -29,7 +31,7 @@ require_once('../databases/validacionsesion.php')
         $breadcrumb = new Breadcrumb();
         // Agrega las migas de pan
         $breadcrumb->addCrumb('Ascesor', '');
-        $breadcrumb->addCrumb('Panel principal');
+        $breadcrumb->addCrumb('Estado de Solicitud');
 
         // Renderiza las migas de pan
         $breadcrumb->render();
@@ -38,7 +40,7 @@ require_once('../databases/validacionsesion.php')
         <section class="section register d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                    <div class="col-lg-12 col-md-12 d-flex flex-column align-items-center justify-content-center">
                         <!-- <div class="d-flex justify-content-center py-4">
                             <a href="index.html" class="logo d-flex align-items-center w-auto">
                                 <img src="assets/img/logo.png" alt="">
@@ -48,7 +50,36 @@ require_once('../databases/validacionsesion.php')
                         <!-- End Logo -->
                         <div class="card mb-3">
                             <div class="card-body">
+                                <table id="tablaSolicitud" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Apellido</th>
+                                            <th>Nombre</th>
+                                            <th>Referencia</th>
+                                            <th>Monto</th>
+                                            <th>Descuento</th>
+                                            <th>Pagar</th>
+                                            <th>Estado</th>
+                                            <th>Cortesía</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpotabla">
 
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Apellido</th>
+                                            <th>Nombre</th>
+                                            <th>Referencia</th>
+                                            <th>Monto</th>
+                                            <th>Descuento</th>
+                                            <th>Pagar</th>
+                                            <th>Estado</th>
+                                            <th>Cortesía</th>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
 
@@ -77,7 +108,10 @@ require_once('../databases/validacionsesion.php')
     <script src="recursos/assets/vendor/php-email-form/validate.js"></script>
 
     <script src="recursos/assets/js/main.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+    <script src="js/solicitudestado.js"></script>
 </body>
 
 </html>

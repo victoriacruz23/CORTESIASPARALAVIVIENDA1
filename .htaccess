@@ -8,6 +8,7 @@ RewriteRule ^inicio-session$ databases/login.php [L]
 RewriteRule ^cerrar-session$ databases/cerrarsesion.php [L]
 RewriteRule ^registro-usuario$ databases/RegistroUsuario.php [L]
 RewriteRule ^consulta-clientes$ databases/consultaclientes.php [L]
+RewriteRule ^consulta-solicitud$ databases/consultasolicitud.php [L]
 RewriteRule ^insertar-cliente$ databases/insertarcliente.php [L]
 RewriteRule ^insertar-solicitud$ databases/insertarsolicitud.php [L]
 

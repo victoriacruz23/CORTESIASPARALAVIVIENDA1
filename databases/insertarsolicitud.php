@@ -17,6 +17,7 @@ if ($cortesia == 1) {
     $montopagar = $montocompleto - ($montodescuento * $montocompleto / 100);
 } else if ($cortesia == 2) {
     $montopagar = 0;
+    $montodescuento = 100;
 } else if ($cortesia == 3) {
     $montopagar = $montocompleto;
 } else {
