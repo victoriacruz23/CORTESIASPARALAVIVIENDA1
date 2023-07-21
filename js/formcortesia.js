@@ -23,6 +23,7 @@
     descripcion: false,
     montocompleto: false,
     montodescuento: false,
+    cortesia: false,
   }
 
   const validarForm = (e) => {
@@ -140,7 +141,7 @@ function consulta() {
 }
 
 function nuevocliente(datos) {
-    fetch("databases/insertarcliente.php", {
+    fetch("insertar-cliente", {
             method: "POST",
             body: JSON.stringify(datos) // Convertimos los datos a formato JSON antes de enviarlos
         })
@@ -151,7 +152,29 @@ function nuevocliente(datos) {
             }
         });
 }
-
+function solicitar(event){
+        event.preventDefault();
+        if (campos.descripcion && campos.montocompleto && campos.cortesia) {
+            solictudregtistro();
+        } else {
+            alerta('error', 'Los campos no son validos');
+        }
+}
+// registrar el formulario de solicitud
+function solictudregtistro(){
+    fetch("insertar-solicitud",{
+        method:"POST",
+        body: new FormData(formsolicitud)
+    }).then(response=>response.json()).then(response=>{
+        // console.log(response);
+        if(response.success == true){
+            alertair('success', `${response.message}`, 'asesor');
+        }else{
+            alerta("error","Error al registrar");
+        }
+        document.getElementById("formsolicitud").reset();
+    });
+};
 function alerta(icono, titulo) {
     Swal.fire({
         icon: icono,
@@ -159,4 +182,15 @@ function alerta(icono, titulo) {
         showConfirmButton: false,
         timer: 1500
     })
+}
+
+function alertair(icono, titulo, dirige) {
+    Swal.fire({
+        icon: icono,
+        title: titulo,
+        showConfirmButton: false,
+        timer: 1500
+    }).then(function () {
+        window.location = dirige;
+    });
 }

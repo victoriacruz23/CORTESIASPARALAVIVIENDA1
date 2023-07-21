@@ -38,4 +38,7 @@ if ($sql_check->num_rows == 0) {
         $response = array("success" => false, "message" => "Error al insertar el afiliado");
         echo json_encode($response);
     }
+}else{
+    $response = array("success" => true, "message" => "El usuario existe");
+    echo json_encode($response);
 }

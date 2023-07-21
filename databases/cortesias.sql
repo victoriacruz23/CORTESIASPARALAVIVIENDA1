@@ -60,6 +60,7 @@ CREATE TABLE cortesias_01(
     Afiliado_id INT,
     Estado BOOLEAN NOT NULL DEFAULT FALSE,
     Referenciacliente VARCHAR(50) NOT NULL,
+    Monto_total varchar(15),
     Monto_pagar varchar(15),
     Porcentaje_descueto varchar(15),
     Tipo_cortesia varchar(50),

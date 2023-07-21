@@ -87,20 +87,11 @@ require_once('../databases/validacionsesion.php');
                                         <input type="text" name="descripcion" id="descripcion" placeholder="Descripción de la solicitud" class="form-control" required>
                                         <p class="text-danger d-none" id="mesaje_descripcion">El campo descripción debe contener mínimo 3 caracteres y máximo 50.<span><i class="bi bi-backspace"></i></span></p>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                                            <label class="form-check-label" for="acceptTerms">Estoy de acuerdo y acepto los <a href="#">términos y condiciones</a></label>
-                                            <p class="text-danger d-none" id="mesaje_acceptTerms">Debe estar de acuerdo antes de enviar.<span><i class="bi bi-backspace"></i></span></p>
-                                        </div>
-                                    </div>
-                                    <p class="text-danger d-none" id="mesaje_passwordif">El campo contraseña debe tener entre 8 y 20 caracteres. Puede contener letras (mayúsculas y minúsculas), números y algunos caracteres especiales permitidos.<span><i class="bi bi-backspace"></i></span></p>
+                                   
                                     <div class="col-12" id="btnregistrouser">
-                                        <button class="btn btn-primary w-100" onclick="registrar(event);" type="submit">Crea una cuenta</button>
+                                        <button class="btn btn-primary w-100" onclick="solicitar(event);" type="submit">Solicitar</button>
                                     </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">¿Ya tienes una cuenta? <a href="inicio">Acceso</a></p>
-                                    </div>
+                                   
                                 </form>
                             </div>
                         </div>
