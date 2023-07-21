@@ -14,8 +14,8 @@ $(document).ready(function() {
 });
 
 function listarclientes() {
-    // fetch("consulta-clientes", {})
     alertatiempo("Espera un momenot, los datos estan por ser mostrados.");
+    // fetch("consulta-clientes", {})
     fetch("asesorc/dt.json", {})
         .then(response => response.json())
         .then(response => {

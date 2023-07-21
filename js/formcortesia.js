@@ -20,10 +20,10 @@
       montodescuento: /^(100|[1-9]?[0-9])$/, // Letras, numeros, guion y guion_bajo
   }
   const campos = {
-    descripcion: false,
-    montocompleto: false,
-    montodescuento: false,
-    cortesia: false,
+      descripcion: false,
+      montocompleto: false,
+      montodescuento: false,
+      cortesia: false,
   }
 
   const validarForm = (e) => {
@@ -80,117 +80,124 @@
       }
 
   }
-// mostrar el div de monto
-const cortesiaSelect = document.getElementById("cortesia");
-const divparcial = document.getElementById("divparcial");
-cortesiaSelect.addEventListener("change", function() {
-    const valorSeleccionado = cortesiaSelect.value;
-    if (valorSeleccionado === "1") {
-        divparcial.classList.remove("d-none");
-    } else {
-        divparcial.classList.add("d-none");
-        document.getElementById('montodescuento').value = 0;
-    }
-});
-consulta();
-// CONSULTA A LA BASE DE DATOS DEL SERVIDOR 
-function consulta() {
-    let userreference = document.getElementById("referencias").value;
-    // alert(userreference);
-    fetch("asesorc/dt.json", {})
-        .then(response => response.json())
-        .then(response => {
-            // arreglo para insertar
-            const clienteEncontrado = response.find(cliente => cliente.REFERENCIA_AFI === userreference);
-            // console.log(clienteEncontrado);
-            if (clienteEncontrado) {
-                const datos = {
-                    REFERENCIA_AFI: clienteEncontrado.REFERENCIA_AFI,
-                    REFERENCIA_AH: clienteEncontrado.REFERENCIA_AH,
-                    PATERNO: clienteEncontrado.PATERNO,
-                    MATERNO: clienteEncontrado.MATERNO,
-                    NOMBRES: clienteEncontrado.NOMBRES,
-                    SEXO: clienteEncontrado.SEXO,
-                    CORREO: clienteEncontrado.CORREO,
-                    MUNICIPIO: clienteEncontrado.MUNICIPIO,
-                    SALDO: clienteEncontrado.SALDO
-                };
-                nuevocliente(datos);
-            }
-            // cliclar para presentar
-            response.forEach(cliente => {
-                if (cliente.REFERENCIA_AFI === `${userreference}`) {
-                    const nombreafiElement = document.getElementById("nombreafi");
-                    // alert(userreference);
-                    nombreafiElement.innerHTML = `
+  // mostrar el div de monto
+  const cortesiaSelect = document.getElementById("cortesia");
+  const divparcial = document.getElementById("divparcial");
+  cortesiaSelect.addEventListener("change", function () {
+      const valorSeleccionado = cortesiaSelect.value;
+      if (valorSeleccionado === "1") {
+          divparcial.classList.remove("d-none");
+      } else {
+          divparcial.classList.add("d-none");
+          document.getElementById('montodescuento').value = 0;
+      }
+  });
+  consulta();
+  // CONSULTA A LA BASE DE DATOS DEL SERVIDOR 
+  function consulta() {
+      let userreference = document.getElementById("referencias").value;
+      //   fetch("consulta-cliente.php", {
+      //           method: "POST",
+      //           headers: {
+      //               "Content-Type": "application/x-www-form-urlencoded" // Agrega esta cabecera para indicar el tipo de datos que se envían
+      //           },
+      //           body: `referencia=${encodeURIComponent(userreference)}` // Envía el valor de la referencia como un parámetro llamado "referencia"
+      //       })
+      fetch("asesorc/dt.json", {}).then(response => response.json())
+          .then(response => {
+              // arreglo para insertar
+              const clienteEncontrado = response.find(cliente => cliente.REFERENCIA_AFI === userreference);
+              // console.log(clienteEncontrado);
+              if (clienteEncontrado) {
+                  const datos = {
+                      REFERENCIA_AFI: clienteEncontrado.REFERENCIA_AFI,
+                      REFERENCIA_AH: clienteEncontrado.REFERENCIA_AH,
+                      PATERNO: clienteEncontrado.PATERNO,
+                      MATERNO: clienteEncontrado.MATERNO,
+                      NOMBRES: clienteEncontrado.NOMBRES,
+                      SEXO: clienteEncontrado.SEXO,
+                      CORREO: clienteEncontrado.CORREO,
+                      MUNICIPIO: clienteEncontrado.MUNICIPIO,
+                      SALDO: clienteEncontrado.SALDO
+                  };
+                  nuevocliente(datos);
+              }
+              // cliclar para presentar
+              response.forEach(cliente => {
+                  if (cliente.REFERENCIA_AFI === `${userreference}`) {
+                      const nombreafiElement = document.getElementById("nombreafi");
+                      // alert(userreference);
+                      nombreafiElement.innerHTML = `
                     <div class="col-12">
                         <label class="form-label">Afiliado</label>
                         <p class="form-control is-valid" id="">${cliente.PATERNO} ${cliente.MATERNO} ${cliente.NOMBRES}</p>
                     </div>
                     `;
-                    referenciafi.innerHTML = `
+                      referenciafi.innerHTML = `
                       <div class="col-12">
                          <label class="form-label">Referencia Afiliado</label>
                          <p class="form-control is-valid" >${cliente.REFERENCIA_AFI}</p>
                       </div>
                     `;
-                }
-            });
+                  }
+              });
 
-        });
-}
+          });
+  }
 
-function nuevocliente(datos) {
-    fetch("insertar-cliente", {
-            method: "POST",
-            body: JSON.stringify(datos) // Convertimos los datos a formato JSON antes de enviarlos
-        })
-        .then(response => response.json())
-        .then(response => {
-            if (response.success == false) {
-                alerta('error', `${response.message}`);
-            }
-        });
-}
-function solicitar(event){
-        event.preventDefault();
-        if (campos.descripcion && campos.montocompleto && campos.cortesia) {
-            solictudregtistro();
-        } else {
-            alerta('error', 'Los campos no son validos');
-        }
-}
-// registrar el formulario de solicitud
-function solictudregtistro(){
-    fetch("insertar-solicitud",{
-        method:"POST",
-        body: new FormData(formsolicitud)
-    }).then(response=>response.json()).then(response=>{
-        // console.log(response);
-        if(response.success == true){
-            alertair('success', `${response.message}`, 'asesor');
-        }else{
-            alerta("error","Error al registrar");
-        }
-        document.getElementById("formsolicitud").reset();
-    });
-};
-function alerta(icono, titulo) {
-    Swal.fire({
-        icon: icono,
-        title: titulo,
-        showConfirmButton: false,
-        timer: 1500
-    })
-}
+  function nuevocliente(datos) {
+      fetch("insertar-cliente", {
+              method: "POST",
+              body: JSON.stringify(datos) // Convertimos los datos a formato JSON antes de enviarlos
+          })
+          .then(response => response.json())
+          .then(response => {
+              if (response.success == false) {
+                  alerta('error', `${response.message}`);
+              }
+          });
+  }
 
-function alertair(icono, titulo, dirige) {
-    Swal.fire({
-        icon: icono,
-        title: titulo,
-        showConfirmButton: false,
-        timer: 1500
-    }).then(function () {
-        window.location = dirige;
-    });
-}
+  function solicitar(event) {
+      event.preventDefault();
+      if (campos.descripcion && campos.montocompleto && campos.cortesia) {
+          solictudregtistro();
+      } else {
+          alerta('error', 'Los campos no son validos');
+      }
+  }
+  // registrar el formulario de solicitud
+  function solictudregtistro() {
+      fetch("insertar-solicitud", {
+          method: "POST",
+          body: new FormData(formsolicitud)
+      }).then(response => response.json()).then(response => {
+          // console.log(response);
+          if (response.success == true) {
+              alertair('success', `${response.message}`, 'asesor');
+          } else {
+              alerta("error", "Error al registrar");
+          }
+          document.getElementById("formsolicitud").reset();
+      });
+  };
+
+  function alerta(icono, titulo) {
+      Swal.fire({
+          icon: icono,
+          title: titulo,
+          showConfirmButton: false,
+          timer: 1500
+      })
+  }
+
+  function alertair(icono, titulo, dirige) {
+      Swal.fire({
+          icon: icono,
+          title: titulo,
+          showConfirmButton: false,
+          timer: 1500
+      }).then(function () {
+          window.location = dirige;
+      });
+  }
