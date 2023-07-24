@@ -1,5 +1,5 @@
 <?php
-require_once('../databases/validacionsesion.php')
+require_once('validacion.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,36 +50,39 @@ require_once('../databases/validacionsesion.php')
                         <!-- End Logo -->
                         <div class="card mb-3">
                             <div class="card-body">
-                                <table id="tablaSolicitud" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Apellido</th>
-                                            <th>Nombre</th>
-                                            <th>Referencia</th>
-                                            <th>Monto</th>
-                                            <th>Descuento</th>
-                                            <th>Pagar</th>
-                                            <th>Estado</th>
-                                            <th>Cortesía</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="cuerpotabla">
+                                <div class="table-responsive">
 
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Apellido</th>
-                                            <th>Nombre</th>
-                                            <th>Referencia</th>
-                                            <th>Monto</th>
-                                            <th>Descuento</th>
-                                            <th>Pagar</th>
-                                            <th>Estado</th>
-                                            <th>Cortesía</th>
+                                    <table id="tablaSolicitud" class="table table-striped" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Apellido</th>
+                                                <th>Nombre</th>
+                                                <th>Referencia</th>
+                                                <th>Monto</th>
+                                                <th>Descuento</th>
+                                                <th>Pagar</th>
+                                                <th>Estado</th>
+                                                <th>Cortesía</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cuerpotabla">
 
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Apellido</th>
+                                                <th>Nombre</th>
+                                                <th>Referencia</th>
+                                                <th>Monto</th>
+                                                <th>Descuento</th>
+                                                <th>Pagar</th>
+                                                <th>Estado</th>
+                                                <th>Cortesía</th>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
 

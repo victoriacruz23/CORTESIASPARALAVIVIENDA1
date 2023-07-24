@@ -16,7 +16,7 @@ function listar() {
                 cliente.Monto_total,
                 cliente.Porcentaje_descueto+"%",
                 cliente.Monto_pagar,
-                cliente.Estado === 1 ? "Aprobado" : "Pendiente",
+                `<p class="text-${cliente.Estado === "0" ? "primary" : cliente.Estado === "1" ? "success": "danger"} ">${cliente.Estado === "0" ? "Pediente" : cliente.Estado === "1" ? "Aprobado": "Cancelado"}</p>`,
                 cliente.Tipo_cortesia === "1" ? "Parcial" : cliente.Tipo_cortesia === "2" ? "Completa":"Campaña"
             ]);
 

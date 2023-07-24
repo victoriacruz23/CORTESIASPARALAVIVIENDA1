@@ -1,5 +1,5 @@
 <?php
-require_once('../databases/validacionsesion.php')
+require_once('validacion.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,36 +50,39 @@ require_once('../databases/validacionsesion.php')
                         <!-- End Logo -->
                         <div class="card mb-3">
                             <div class="card-body">
-                                <table id="tablaSolicitud" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
+                                <div class="table-responsive">
+                                    <table id="tablaSolicitud" class="table table-striped" style="width:100%">
+                                        <thead>
+                                            <tr>
 
-                                            <th>Apellido</th>
-                                            <th>Apellido</th>
-                                            <th>Nombre</th>
-                                            <th>Celular</th>
-                                            <th>Referencia Afiliado</th>
-                                            <th>Municipio</th>
-                                            <th>Solicitar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="cuerpotabla">
+                                                <th>Apellido</th>
+                                                <th>Apellido</th>
+                                                <th>Nombre</th>
+                                                <th>Celular</th>
+                                                <th>Referencia Afiliado</th>
+                                                <th>Municipio</th>
+                                                <th>Solicitar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cuerpotabla">
 
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Apellido</th>
-                                            <th>Apellido</th>
-                                            <th>Nombre</th>
-                                            <th>Celular</th>
-                                            <th>Referencia Afiliado</th>
-                                            <th>Municipio</th>
-                                            <th>Solicitar</th>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Apellido</th>
+                                                <th>Apellido</th>
+                                                <th>Nombre</th>
+                                                <th>Celular</th>
+                                                <th>Referencia Afiliado</th>
+                                                <th>Municipio</th>
+                                                <th>Solicitar</th>
 
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
+
                         </div>
 
                     </div>

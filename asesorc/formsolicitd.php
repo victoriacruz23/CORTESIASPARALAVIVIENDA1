@@ -1,6 +1,5 @@
 <?php
-require_once('../databases/validacionsesion.php');
-
+require_once('validacion.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
